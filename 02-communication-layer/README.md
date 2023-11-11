@@ -1,4 +1,5 @@
 ## Chapter 2 - Communication Layer
+
 In Chapter 2 of the Kafka Building Blocks course, we explored the following components:
 
 - Kafka / Redpanda records
@@ -24,12 +25,27 @@ alias rpk="docker exec -ti redpanda-1 rpk"
 # inspect the cluster
 rpk cluster info
 
-# create and activate a Python virtual environment
-python3 -m venv
-source bin/activate
+# install python3.11 if doesn't have
+python3 --version
+sudo apt install python3.11 python3.11-venv
 
-# install the kafka-python dependency
-pip install kafka-python
+# update alternatives if have multiple python
+which python3
+sudo update-alternatives --list python3
+# use whereis to find python3.11 and etc
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
+# update-alternatives for other python version
+sudo update-alternatives --config python3
+
+# create and activate a Python virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# update pip
+python -m pip install -U pip
+
+# install the needed dependencies
+python -m pip install -r requirements.txt
 
 # create the purchases topic
 rpk topic create purchases -p 4
