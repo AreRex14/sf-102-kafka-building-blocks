@@ -47,6 +47,8 @@ python -m pip install -U pip
 # install the needed dependencies
 python -m pip install -r requirements.txt
 
+export REDPANDA_BROKERS=["localhost:9092"]
+
 # create the purchases topic
 rpk topic create purchases -p 4
 
